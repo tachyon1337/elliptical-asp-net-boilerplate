@@ -1,0 +1,18 @@
+﻿@model AddPhoneNumberViewModel
+@{
+    ViewBag.Title = "Add Phone Number";
+    Layout = "_ManageLayout.cshtml";
+}
+
+
+<h3 class="account-header">@ViewBag.Title</h3>
+<p class="sub-heading">Add an account mobile phone number. This is a requirement to enable SMS two-factor authentication for your local account.</p>
+@using (Html.Elliptical().BeginForm(Model, new FormAttributes { Scope = "form", Action = "/Manage/AddPhoneNumber", CssClass = "single-column" }))
+{
+
+    @Html.Elliptical().EditorFor(Model, m => m.Number, HtmlFormElement.Text)
+    @Html.Elliptical().Submit("Submit")
+}
+
+
+

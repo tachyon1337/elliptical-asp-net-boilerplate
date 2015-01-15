@@ -1,0 +1,46 @@
+﻿@model ContactViewModel
+@{
+    ViewBag.Title = "Contact";
+}
+<section class="outer">
+    <grid-row>
+        <grid-columns class="desktop-6 tablet-6 default-12 bordered-column">
+            <h3>@ViewBag.Title</h3>
+            <p>Sample API contact form.</p>
+            @using (Html.Elliptical().BeginForm(Model, new FormAttributes { Scope = "form", Service = "Contact", CssClass = "form-width" }))
+            {
+                @Html.Elliptical().SpanFor(Model, m => m.Name)
+                @Html.Elliptical().EditorFor(Model, m => m.Name, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Email, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Phone, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Comments, HtmlFormElement.TextArea)
+                @Html.Elliptical().SelectFor(Model, m => new SelectListModel
+                {
+                    Options=m.ReferralSources,
+                    SelectedProperty=m.ReferralSource,
+                    TextProperty=m.ReferralSources.FirstOrDefault().Text,
+                    ValueProperty=m.ReferralSources.FirstOrDefault().Value
+                })
+               
+                <p class="form-section">Preferred Contact Method?</p>
+                @Html.Elliptical().RadioFor(Model, m => new SelectListModel 
+                {
+                    Options=m.ContactOptions,
+                    SelectedProperty=m.ContactOption,
+                    TextProperty=m.ContactOptions.FirstOrDefault().Text,
+                    ValueProperty=m.ContactOptions.FirstOrDefault().Value
+                })
+                
+                @Html.Elliptical().EditorFor(Model,m=>m.ContactMeOnWeekends, HtmlFormElement.Checkbox)
+                @Html.Elliptical().Submit("Submit")
+            }
+
+        </grid-columns>
+        <grid-columns class="desktop-6 tablet-6 default-12">
+            <h3>&nbsp;</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in accumsan nisl. Ut ultricies odio lectus, eleifend maximus elit elementum in. Praesent euismod luctus tempus. Ut dignissim mauris sed lacus dapibus tristique.
+            </p>
+        </grid-columns>
+    </grid-row>
+</section>

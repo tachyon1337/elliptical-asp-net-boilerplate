@@ -1,0 +1,13 @@
+﻿@if(TempData.GetNotifications().Any())
+{
+    foreach (var notification in TempData.GetNotifications())
+    {
+        using (Html.Elliptical().WebComponent("alert-notification", "alert-notification", new ElementAttributes { 
+            Message=notification.Message, 
+            ComponentCss=notification.CssClass
+        }))
+        {
+            
+        }
+    }
+}

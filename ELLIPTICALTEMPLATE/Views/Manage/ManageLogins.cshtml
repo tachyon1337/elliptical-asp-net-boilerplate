@@ -1,0 +1,81 @@
+﻿@model ManageLoginsViewModel
+@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Manage your social network logins";
+    Layout = "_ManageLayout.cshtml";
+}
+
+
+<h3 class="account-header">@ViewBag.Title</h3>
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0)
+    {
+        <blockquote class="warning">
+            There are no external social network services configured.
+        </blockquote>
+    }
+    else
+    {
+        if (Model.CurrentLogins.Count > 0)
+        {
+            <h4>Registered Logins</h4>
+            <p>You are currently able to login to our site with these social network providers</p>
+            <flex-box class="column top social-button-container">
+                <flex-box class="left center social-row-height">
+                    @foreach (var account in Model.CurrentLogins)
+                    {
+                        
+                            <span class="social-label">@account.LoginProvider</span>
+                            <div>
+                              @if (ViewBag.ShowRemoveButton)
+                                {
+                                    using (Html.BeginForm("RemoveLogin", "Manage", FormMethod.Post, new { @class = "social-button-form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.Hidden("loginProvider", account.LoginProvider)
+                                        @Html.Hidden("providerKey", account.ProviderKey)
+                                        <input type="submit" class="ui-button tiny" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                    }
+                                }
+                                else
+                                {
+                                    @: &nbsp;
+                                }
+                            </div>
+                    }
+                </flex-box>
+            </flex-box>
+            
+            <hr class="hr-margin-two" />
+        }
+        if (Model.OtherLogins.Count > 0)
+        {
+
+            <h4>Available Logins</h4>
+            <p>These social network providers are available for you to login to our site.</p>
+            using (Html.BeginForm("LinkLogin", "Manage"))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                        @foreach (AuthenticationDescription p in Model.OtherLogins)
+                        {
+                            <p>
+                            <button type="submit" class="ui-button social @p.AuthenticationType.ToLower()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login with @p.AuthenticationType</button>
+                            </p>
+                        }
+                </div>
+            }
+        }
+    }
+}
+
+    
+
+
+
+

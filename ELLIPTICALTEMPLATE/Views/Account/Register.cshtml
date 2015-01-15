@@ -1,0 +1,35 @@
+﻿@using ApplicationIdentity = Elliptical.Mvc.Identity.ApplicationIdentity
+@model RegisterViewModel
+@{
+    ViewBag.Title = "Sign Up";
+    bool useAccountApi = ApplicationIdentity.UseAccountApi;
+    var formAttributes = new FormAttributes { Scope = "form", CssClass = "form-width", ImportHref = "ui-account/ui-signup-form" };
+    if (useAccountApi)
+    {
+        formAttributes.Service = "Membership";
+    }
+    else
+    {
+        formAttributes.Action = "/Account/Register";
+    }
+}
+<section class="outer">
+    <grid-row>
+        <grid-columns class="desktop-6 tablet-6 default-12 bordered-column">
+            <h3>@ViewBag.Title</h3>
+            <p>Register an account.</p>
+            @using (Html.Elliptical().BeginForm(Model, "ui-signup-form", formAttributes))
+            {
+                
+            }
+        </grid-columns>
+        <grid-columns class="desktop-6 tablet-6 default-12">
+            @Html.Partial("_ExternalLoginsListPartial")
+        </grid-columns>
+    </grid-row>
+</section>
+
+
+
+
+

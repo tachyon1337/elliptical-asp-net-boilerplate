@@ -1,0 +1,24 @@
+﻿@model ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<section class="outer">
+    <grid-row>
+        <grid-columns class="default-12">
+            <h3>@ViewBag.Title</h3>
+            <h4>Associate your @ViewBag.LoginProvider account.</h4>
+            <blockquote class="info">
+                You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
+                Please enter an email address,your first and last name , and then press the Register button to finish
+                logging in.
+            </blockquote>
+            @using (Html.Elliptical().BeginForm(Model, new FormAttributes { Scope = "form", Action = "/Account/ExternalLoginConfirmation", CssClass = "form-width" }))
+            {
+                @Html.Elliptical().EditorFor(Model,m=>m.Email,HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.FirstName, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.LastName, HtmlFormElement.Text)
+                @Html.Elliptical().Submit("Register")
+            }
+        </grid-columns>
+    </grid-row>
+</section>

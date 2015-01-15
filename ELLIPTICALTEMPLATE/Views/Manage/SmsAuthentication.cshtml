@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "SMS Authentication";
+    Layout = "~/Views/Manage/_ManageLayout.cshtml";
+    var indexModel = (IndexViewModel)ViewBag.IndexViewModel;
+}
+
+<h3 class="account-header">SMS Authentication</h3>
+
+@if (indexModel.TwoFactor)
+{
+    <p class="sub-heading">
+        Press the button below to disable the two-factor authentication requirement for this account. Once disabled, local logins will only be authenticated by username and password.
+    </p>
+}
+else
+{
+    <p class="sub-heading">
+        Enable two-factor authentication to supplement your local account security. With two-factor authentication enabled, local logins can only be completed be entering a texted(or emailed) verification code.
+    </p>
+}
+
+@if(indexModel.PhoneNumber ==null)
+{
+    <blockquote class="warning">
+        You must have a verified mobile phone number to enable two-factor authentication for your local account. Select the <b>Add Phone Number</b> option to verify your mobile device.
+    </blockquote>
+}
+else
+{
+    if (indexModel.TwoFactor)
+    {
+        using (Html.Elliptical().BeginForm(new FormAttributes { Action = "/Manage/DisableTwoFactorAuthentication" }))
+        {
+            @Html.Elliptical().Submit("Disable", true, false)
+        }
+    }
+    else
+    {
+        using (Html.Elliptical().BeginForm(new FormAttributes { Action = "/Manage/EnableTwoFactorAuthentication" }))
+        {
+            @Html.Elliptical().Submit("Enable", true, false)
+        }
+    }
+}
+
+

@@ -1,0 +1,27 @@
+﻿<ui-topbar>
+    <ui-toggle></ui-toggle>
+    <ui-brand>
+        <div class="logo" controller="homeLink"></div>
+    </ui-brand>
+    <section class="center">
+        <ui-menu class="center">
+            <menu-item class="@Html.Elliptical().ActiveMenuItem("GetStarted")"><a href="/Home/Get-Started">Get Started</a></menu-item>
+            <menu-divider></menu-divider>
+            <menu-item class="@Html.Elliptical().ActiveMenuItem("About")"><a href="/Home/About">About</a></menu-item>
+            <menu-divider></menu-divider>
+            <menu-item class="@Html.Elliptical().ActiveMenuItem("Contact")"><a href="/Home/Contact">Contact</a></menu-item>
+        </ui-menu>
+        <ui-menu class="right user">
+             @if (Request.IsAuthenticated)
+             {
+                <menu-item><a href="/Manage/Index" class="profile" data-role="profile-icon"><span class="icon-user"></span><span controller="identity"></span></a></menu-item>
+                <menu-item><a href="/Account/Logoff">Logout</a></menu-item>
+             }
+             else
+             {
+                <menu-item><a href="/Account/Register">Register</a></menu-item>
+                <menu-item><a href="/Account/Login">Login</a></menu-item>
+             }
+        </ui-menu>
+    </section>
+</ui-topbar>

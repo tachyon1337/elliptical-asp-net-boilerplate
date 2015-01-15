@@ -1,0 +1,80 @@
+﻿@{
+    var indexModel = (IndexViewModel)ViewBag.IndexViewModel;
+    
+}
+<!DOCTYPE html>
+<html class="customelements">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage - @ViewBag.Title</title>
+    @Scripts.Render("~/bundles/platform")
+    @Styles.Render("~/bundles/css")
+</head>
+<body>
+    <ui-container name="base" class="ui-sticky-footer">
+        @Html.Partial("_Notifications")
+        @Html.Partial("_Navbar")
+        <section class="outer">
+            <grid-row>
+                <grid-columns class="default-12">
+                    <flex-box class="left bottom space-between">
+                        @Html.Elliptical().HTML5Import("tab-toggle")
+                        <h3>Manage Account <caret-toggle controller="tab-toggle" tab-selector="tabbed-items"></caret-toggle></h3>
+                        <flex-box class="account-icon-container" data-id="account-icon">
+                            <span class="icon-user-locked account-icon"></span>
+                            <span class="profile-name" controller="account-identity"></span>
+                        </flex-box>
+                    </flex-box>
+                    <ui-tabs class="stacked" role="tabs" data-border="true" flex="true" id="accountTabs" app="account">
+                        <tab-item>
+                            <tabbed-items class="off">
+                                <tab-item class="@Html.Elliptical().ActiveMenuItem("Index")"><a href="/Manage/Index">Profile</a></tab-item>
+                                @if (indexModel.HasPassword)
+                                {
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("Password")"><a href="/Manage/ChangePassword">Change Password</a></tab-item>
+                                }
+                                else
+                                {
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("Password")"><a href="/Manage/SetPassword">Create Password</a></tab-item>
+                                }
+
+                                @if (indexModel.EnableOAuth)
+                                {
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("Logins")"><a href="/Manage/ManageLogins">Social Network Logins</a></tab-item>
+                                }
+                               
+                                @if (indexModel.EnableTwoFactor &&  indexModel.PhoneNumber != null)
+                                {
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("ChangeNumber")"><a href="/Manage/AddPhoneNumber">Change Phone Number</a></tab-item>
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("RemoveNumber")"><a href="/Manage/RemovePhoneNumber">Remove Phone Number</a></tab-item>
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("Authentication")"><a href="/Manage/SMSAuthentication">SMS Authentication</a></tab-item>
+                                }
+                                else if (indexModel.EnableTwoFactor)
+                                {
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("AddNumber")"><a href="/Manage/AddPhoneNumber">Add Phone Number</a></tab-item>
+                                    <tab-item class="@Html.Elliptical().ActiveMenuItem("Authentication")"><a href="/Manage/SMSAuthentication">SMS Authentication</a></tab-item>
+                                }
+                                
+                               
+                            </tabbed-items>
+                        </tab-item>
+                        <tab-item>
+                            <tabbed-content class="border">
+                                <tab-content class="active" data-id="main-tab">
+                                    @RenderBody()
+                                </tab-content>
+                            </tabbed-content>
+                        </tab-item>
+                    </ui-tabs>
+                </grid-columns>
+            </grid-row>
+        </section>
+        @Html.Partial("_Footer")
+    </ui-container>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/elliptical")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html class="customelements">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Elliptical Application</title>
+    @Scripts.Render("~/bundles/platform")
+    @Styles.Render("~/bundles/css")
+
+</head>
+<body>
+    <ui-container name="base" class="ui-sticky-footer">
+       @Html.Partial("_Notifications")
+        @Html.Partial("_Navbar")
+        @RenderBody()
+        @Html.Partial("_Footer")
+    </ui-container>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/elliptical")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>

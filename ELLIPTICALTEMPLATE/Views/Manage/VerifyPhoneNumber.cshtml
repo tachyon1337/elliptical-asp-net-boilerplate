@@ -1,0 +1,15 @@
+﻿@model VerifyPhoneNumberViewModel
+@{
+    ViewBag.Title = "Verify Phone Number";
+    Layout = "_ManageLayout.cshtml";
+}
+
+<h3 class="account-header">@ViewBag.Title.</h3>
+<p class="sub-heading">Enter the verification code that was texted to your mobile phone.</p>
+@using (Html.Elliptical().BeginForm(Model, new FormAttributes { Scope = "form", Action = "/Manage/VerifyPhoneNumber" }))
+{
+
+    @Html.Elliptical().HiddenFor(Model,m=>m.PhoneNumber)
+    @Html.Elliptical().EditorFor(Model,m=>m.Code,HtmlFormElement.Text)
+    @Html.Elliptical().Submit("Submit")
+}

@@ -1,0 +1,54 @@
+﻿@model LoginViewModel
+@using ApplicationIdentity = Elliptical.Mvc.Identity.ApplicationIdentity
+@{
+    ViewBag.Title = "Log in";
+    
+    bool useAccountApi = ApplicationIdentity.UseAccountApi;
+    string returnUrl = Request.Params["ReturnUrl"];
+    var formAttributes = new FormAttributes
+    {
+        Scope = "form", 
+        CssClass = "form-width", 
+        ImportHref="ui-account/ui-login-form/ui-login-form-script.html",
+        IncludeFormTag=true
+    };
+    if(useAccountApi)
+    {
+        formAttributes.Service = "Membership";
+        formAttributes.Schema = "LoginViewModel";
+    }
+    else
+    {
+        formAttributes.Action = "/Account/Login";
+    }
+    if(returnUrl !=null)
+    {
+        formAttributes.ReturnUrl = returnUrl;
+    }
+}
+<section class="outer">
+    <grid-row>
+        <grid-columns class="desktop-6 tablet-6 default-12 bordered-column">
+            <h3>@ViewBag.Title</h3>
+            <p></p>
+            @using (Html.Elliptical().BeginForm(Model,"ui-login-form", formAttributes))
+            {
+                @Html.Elliptical().EditorFor(Model, m => m.Email, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Password, HtmlFormElement.Password)
+                @Html.Elliptical().EditorFor(Model,m=>m.RememberMe,HtmlFormElement.Checkbox)
+                if(useAccountApi)
+                {
+                    @Html.Elliptical().Hidden("ReturnUrl",Request.Params["ReturnUrl"])
+                }
+                @Html.Elliptical().Submit("Sign In")
+            }
+            <flex-box class="space-around form-width">
+                @Html.ActionLink("Register as a new user", "Register", null, new { @class = "primary" })
+                @Html.ActionLink("Forgot Password?", "ForgotPassword", null, new { @class = "primary" })
+            </flex-box>
+        </grid-columns>
+        <grid-columns class="desktop-6 tablet-6 default-12">
+               @Html.Partial("_ExternalLoginsListPartial")
+        </grid-columns>
+</grid-row>
+</section>

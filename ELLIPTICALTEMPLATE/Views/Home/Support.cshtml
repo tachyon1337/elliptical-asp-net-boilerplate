@@ -1,0 +1,38 @@
+﻿@model SupportViewModel
+@{
+    ViewBag.Title = "Support";
+}
+
+<section class="outer">
+    <grid-row>
+        <grid-columns class="desktop-6 tablet-6 default-12 bordered-column">
+            <h3>@ViewBag.Title</h3>
+            <p>Sample Server post support form.</p>
+            @using (Html.Elliptical().BeginForm(Model, new FormAttributes { Scope = "form2", Action = "/Home/Support", CssClass = "form-width" }))
+            {
+                @Html.Elliptical().EditorFor(Model, m => m.Name, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Email, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Phone, HtmlFormElement.Text)
+                @Html.Elliptical().EditorFor(Model, m => m.Comments, HtmlFormElement.TextArea)
+                @Html.Elliptical().SelectFor(Model, m => new SelectListModel
+                {
+                    Options = m.IssueTypes,
+                    SelectedProperty = m.IssueType,
+                    TextProperty = m.IssueTypes.FirstOrDefault().Text,
+                    ValueProperty = m.IssueTypes.FirstOrDefault().Value
+                })
+
+
+                @Html.Elliptical().Submit("Submit")
+
+            }
+        </grid-columns>
+        <grid-columns class="desktop-6 tablet-6 default-12">
+            <h3>&nbsp;</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in accumsan nisl. Ut ultricies odio lectus, eleifend maximus elit elementum in. Praesent euismod luctus tempus. Ut dignissim mauris sed lacus dapibus tristique. Nulla tincidunt malesuada tortor interdum facilisis. 
+            </p>
+        </grid-columns>
+    </grid-row>
+</section>
+

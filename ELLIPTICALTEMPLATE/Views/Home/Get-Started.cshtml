@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Get Started";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="outer">
+    <grid-row>
+        <grid-columns class="default-12 get-started">
+            <h3>@ViewBag.Title</h3>
+            <p>Out of the box configuration details.</p>
+            <h4 class="secondary">Messaging Services</h4>
+            <p>By default the Elliptical template implements shell services for Email and SMS. Update the Unity Container in UnityConfig.cs to resolve to real implementations.</p>
+            <blockquote class="info">
+                The Elliptical template is bundled with a Twilio SMS service implementation and a SendGrid Email service implementation. You can implement these services by simply setting the respective Id/Token values under AppSettings in the web.config and
+                resolving SmsSerice and EmailService Types to TwilioSmsService and SendGridEmailService, respectively.
+                <br /><br />
+                For generic implementations, the Sms Service should implement ISmsService interface and the Email Service, IEmailService.
+            </blockquote>
+            <h4 class="secondary">User Registrations/Logins</h4>
+            By default, the Elliptical template uses Web API for registrations and logins. You can toggle this setting to use the Account MVC controller by setting the <b>useAccountAPI</b> configuration paramter to false in the ellipticalIdentity config section in web.config.
+            </p>
+            <h4 class="secondary">OAuth External Services</h4>
+            <p>You can enabled/disable oauth2 logins by toggling the <b>enableOAuth</b> config paramter in the ellipticalIdentity config section.</p>
+            <blockquote class="info">
+                Uncomment the applicable OAuth services in StartUp.Auth.cs to enable them in the default site template. Each requires an appId and a secret token that you can set in the web.config file.
+            </blockquote>
+            <h4 class="secondary">Verfied Emails</h4>
+            <p>To enable email verfication for user registrations, simply toggle the <b>confirmEmail</b> config paramter in the ellipticalIdentity config section.</p>
+            <h4 class="secondary">Two-Factor Authentication</h4>
+            <p>To enable two-factor authentication for user logins, simply toggle the <b>enableTwoFactorAuth</b> config paramter in the ellipticalIdentity config section.</p>
+            <blockquote class="warning">
+                Two-Factor authentication requires real service implementations for SMS and Email
+            </blockquote>
+            <h4 class="secondary">Validation Settings</h4>
+             Validation settings for user registrations/logins can be modified by changing the key-value settings in the <b>validation section</b> within the ellipticalIdentity config section.
+      </grid-columns>
+    </grid-row>
+</section>

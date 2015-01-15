@@ -1,0 +1,26 @@
+﻿@using Microsoft.Owin.Security
+<h3>Social Media Sign In</h3>
+<p>Use your favorite  social media account to sign in.</p>
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+        <div>
+            <blockquote class="warning">
+                There are no external authentication services configured. 
+            </blockquote>
+        </div>
+    }
+    else {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Request.Params["ReturnUrl"] }))
+        {
+            @Html.AntiForgeryToken()
+            <flex-box class="column top">
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="ui-button social @p.AuthenticationType.ToLower()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login with @p.AuthenticationType</button>
+                }
+
+            </flex-box>
+        }
+    }
+}

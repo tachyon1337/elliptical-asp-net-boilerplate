@@ -1,0 +1,19 @@
+﻿@model ProfileViewModel
+@{
+    Layout = "_ManageLayout.cshtml";
+}
+<h3 class="account-header">Profile</h3>
+<p class="sub-heading">Update your local account profile.</p>
+@using(Html.Elliptical().BeginForm(Model,new FormAttributes{ Scope="form", Service="/Manage/Profile", SuccessMessage="Profile Successfully Updated", Channel="profile",Event="updated" }))
+{
+    @Html.Elliptical().HiddenFor(Model,m=>m.Id)
+    @Html.Elliptical().SpanFor(Model, m => m.Email, new ElementAttributes { CssClass="profile-email-label"})
+    @Html.Elliptical().EditorFor(Model, m => m.FirstName, HtmlFormElement.Text)
+    @Html.Elliptical().EditorFor(Model, m => m.LastName, HtmlFormElement.Text)
+    @Html.Elliptical().EditorFor(Model, m => m.Address, HtmlFormElement.Text)
+    @Html.Elliptical().EditorFor(Model, m => m.City, HtmlFormElement.Text)
+    
+    @Html.Elliptical().EditorFor(Model, m => m.ZipCode, HtmlFormElement.Text)
+    @Html.Elliptical().EditorFor(Model, m => m.Phone, HtmlFormElement.Text)
+    @Html.Elliptical().Submit("Update Profile")
+}

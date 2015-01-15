@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<section class="outer padding-top two">
+    <grid-row>
+        <grid-columns class="default-12 demo-badge">
+            <ui-flex-container class="center space-between demo-flex">
+                <div class="demo-carousel">
+                   @Html.Partial("_DemoCarousel")
+                </div>
+                <img src="~/Content/css/img/elliptical-logo.svg" class="logo-main" />
+                <ui-flex-container class="column demo-web-components">
+                    <h2 class="style-color-green">Web Components</h2>
+                    <h3 class="style-color-green asp-header">ASP.NET</h3>
+                    <a class="ui-button secondary next">Learn More</a>
+                </ui-flex-container>
+            </ui-flex-container>
+        </grid-columns>
+    </grid-row>
+    <grid-row class="demo-panel">
+        <grid-columns class="desktop-4 tablet-6 default-12">
+            <h3>Getting started</h3>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="ui-button inverse next" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more</a></p>
+        </grid-columns>
+        <grid-columns class="desktop-4 tablet-6 default-12">
+            <h3>Get more libraries</h3>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="ui-button next" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more</a></p>
+        </grid-columns>
+        <grid-columns class="desktop-4 tablet-6 default-12">
+            <h3>Web Hosting</h3>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="ui-button inverse next" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more</a></p>
+        </grid-columns>
+    </grid-row>
+</section>

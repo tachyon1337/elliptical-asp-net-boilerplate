@@ -1,0 +1,63 @@
+﻿
+@mixin media-breakpoint-min($width:null){
+  @media only screen and (min-width: #{$width}){
+    @content;
+  }
+}
+
+@mixin gutter-collapse-m(){
+    @include gutter-bleed();
+    width:110%;
+    padding-left:1.5em;
+    padding-right:1.5em;
+}
+
+@mixin flat-forms($border-color:#d5d5d5,$background:#fff,$border-radius:5px,$form-width:400px){
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea{
+    border:1px solid $border-color;
+    background:$background;
+    border-radius:$border-radius;
+    &:focus {
+      background:$background;
+      border:1px solid $primary-color !important;
+    }
+    &[readonly]{
+        &:focus{
+            border:1px solid $border-color !important;
+        }
+    }
+
+  }
+  .form-width{
+      form{
+          width:$form-width;
+          max-width:100%;
+      }
+  }
+}
+
+
+
+@include touch-content(){
+    .gutter-collapse-m{
+        @include gutter-collapse-m();
+    }
+}
+
+@include tablet-content(){
+     .tablet-flex{
+      @include flexbox($justification:center);
+     
+    }
+}
+
