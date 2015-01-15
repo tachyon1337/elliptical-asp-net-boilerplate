@@ -38,7 +38,6 @@ nbproject
 #Node
 node_modules/
 
-#Test
-test/
+
 
 umd.js
