@@ -631,21 +631,16 @@
     <Content Include="Content\css\imports\icon-sets.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\test\app.js" />
+    <Content Include="Scripts\async.js" />
+    <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\dust.js" />
     <Content Include="Scripts\ellipsis-template-import.js" />
     <Content Include="Scripts\ellipsis.js" />
-    <Content Include="Scripts\test\elliptical-component-init.js" />
     <Content Include="Scripts\elliptical.js" />
     <Content Include="Scripts\holder.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\test\Object-observe.js" />
     <Content Include="Scripts\platform.js" />
-    <Content Include="Scripts\test\redirectTest.js" />
-    <Content Include="Scripts\test\setImmediate.js" />
-    <Content Include="Scripts\test\templatefiles.js" />
-    <Content Include="Scripts\test\templates - Copy.js" />
     <Content Include="Scripts\templates-core.js" />
     <Content Include="Scripts\templates.js" />
     <Content Include="Web.config" />
@@ -769,6 +764,12 @@
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Privacy-Policy.cshtml" />
     <Content Include="Views\Home\Security-Policy.cshtml" />
+    <Content Include="Sass\imports\_box.scss" />
+    <Content Include="Sass\imports\_drawer.scss" />
+    <Content Include="Sass\imports\_tabs.scss" />
+    <Content Include="Sass\imports\_topbar.scss" />
+    <Content Include="Sass\imports\_touch-drawer.scss" />
+    <Content Include="Sass\custom-mixins.scss" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412181754306_InitialCreate.resx">

@@ -91,6 +91,29 @@ alert-notification{
     }
 }
 
+.gray{
+  color:$gray;
+}
+
+.medium-gray{
+  color:$medium-gray;
+}
+
+.dark-gray{
+  color:$dark-gray;
+}
+
+.light-gray{
+  color:$light-gray;
+}
+
+.white{
+  color:$white;
+}
+
+.black{
+  color:$black;
+}
 
 /* ui-template */
 ui-template{
@@ -114,6 +137,22 @@ form{
   &.visible{
     visibility: visible !important;
   }
+}
+
+.auto-left{
+  margin-right:auto;
+}
+
+.auto-right{
+  margin-left:auto;
+}
+
+.auto-top{
+  margin-bottom:auto;
+}
+
+.auto-bottom{
+  margin-top:auto;
 }
 
 .show{
@@ -179,6 +218,61 @@ ui-container{
 flex-box.form-width{
     width:400px;
     max-width:100%;
+}
+
+.no-list-style{
+  list-style: none;
+}
+
+@include touch-content(){
+  .touch-margin-top{
+    margin-top:1em;
+    &.two{
+      margin-top:2em;
+    }
+  }
+  .touch-margin-bottom{
+    margin-bottom:1em;
+    &.two{
+      margin-bottom:2em;
+    }
+  }
+  .touch-margin-left{
+    margin-left:1em;
+    &.two{
+      margin-left:2em;
+    }
+  }
+  .touch-margin-right{
+    margin-right:1em;
+    &.two{
+      margin-right:2em;
+    }
+  }
+  .touch-padding-top{
+    padding-top:1em;
+    &.two{
+      padding-top:2em;
+    }
+  }
+  .touch-padding-bottom{
+    padding-bottom:1em;
+    &.two{
+      padding-bottom:2em;
+    }
+  }
+  .touch-padding-left{
+    padding-left:1em;
+    &.two{
+      padding-left:2em;
+    }
+  }
+  .touch-padding-right{
+    padding-right:1em;
+    &.two{
+      padding-right:2em;
+    }
+  }
 }
 
 //firefox select element correction to hide dd arrow
