@@ -20,7 +20,7 @@
                         input.val('');
                     } else {
                         var message = self._jsonParseMessage(err.message);
-                        self._notify('error', err.message, true);
+                        self._notify('error', message, true);
                     }
                 });
             }
